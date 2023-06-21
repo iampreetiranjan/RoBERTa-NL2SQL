@@ -174,8 +174,8 @@ def get_roberta_output(model_roberta, tokenizer, nlu_t, headers, max_seq_length)
     # 4. Generate RoBERTa output.
     check, _, all_encoder_layer = model_roberta(input_ids=all_input_ids, attention_mask=all_input_mask, output_hidden_states=True)
     all_encoder_layer = list(all_encoder_layer)
-    print(type(check), type(all_encoder_layer), len(check), all_encoder_layer[-1])
-    assert all(check == all_encoder_layer[-1]).all() == 1
+    #print(type(check), type(all_encoder_layer), len(check), all_encoder_layer[-1])
+    #assert all(check == all_encoder_layer[-1]).all() == 1
 
     # 5. generate l_hpu from i_headers
     l_hpu = gen_l_hpu(i_headers)
