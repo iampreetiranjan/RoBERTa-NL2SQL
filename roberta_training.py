@@ -133,7 +133,7 @@ def get_roberta_output(model_roberta, tokenizer, nlu_t, headers, max_seq_length)
         for (i, token) in enumerate(nlu_t1):
             t_to_tt_idx1.append(
                 len(nlu_tt1))  
-            sub_tokens = tokenizer.tokenize(token, is_pretokenized=True)
+            sub_tokens = tokenizer.tokenize(token, padding=True, is_pretokenized=True)
             for sub_token in sub_tokens:
                 tt_to_t_idx1.append(i)
                 nlu_tt1.append(sub_token) 
@@ -174,7 +174,7 @@ def get_roberta_output(model_roberta, tokenizer, nlu_t, headers, max_seq_length)
     # 4. Generate RoBERTa output.
     check, _, all_encoder_layer = model_roberta(input_ids=all_input_ids, attention_mask=all_input_mask, output_hidden_states=True)
     all_encoder_layer = list(all_encoder_layer)
-    #print(type(check), type(all_encoder_layer), len(check), all_encoder_layer[-1])
+    print(type(check), type(all_encoder_layer), len(check),check, all_encoder_layer, all_encoder_layer[-1])
     #assert all(check == all_encoder_layer[-1]).all() == 1
 
     # 5. generate l_hpu from i_headers
