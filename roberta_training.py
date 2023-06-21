@@ -246,8 +246,8 @@ def get_wemb_n(i_nlu, l_n, hS, num_hidden_layers, all_encoder_layer, num_out_lay
             #print(type(i_layer),type(b), type(i_nlu1[0]),type(i_nlu1[1]) ,i_layer,b, i_nlu1[0],i_nlu1[1])
             #wemb_n[b, 0:(i_nlu1[1] - i_nlu1[0]), st:ed] = all_encoder_layer[i_layer][b, i_nlu1[0]:i_nlu1[1], :]
             #wemb_n[b, 0:(i_nlu1[1] - i_nlu1[0]), st:ed] = all_encoder_layer[i_layer][i_nlu1[0]:i_nlu1[1]]
-            all_encoder_slice = torch.tensor(all_encoder_layer[i_layer][i_nlu1[0]:i_nlu1[1]])
-            wemb_n[b, 0:(i_nlu1[1] - i_nlu1[0]), st:ed] = all_encoder_slice
+            tensor_value = torch.tensor([float(value) for value in all_encoder_layer[i_layer].split()])
+            wemb_n[b, 0:(i_nlu1[1] - i_nlu1[0]), st:ed] = tensor_value[i_nlu1[0]:i_nlu1[1]].unsqueeze(0)
     return wemb_n
 
 def get_wemb_h(i_headers, l_hpu, l_hs, hS, num_hidden_layers, all_encoder_layer, num_out_layers_h):
