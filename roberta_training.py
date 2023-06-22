@@ -235,8 +235,9 @@ def get_wemb_n(i_nlu, l_n, hS, num_hidden_layers, all_encoder_layer, num_out_lay
     bS = len(l_n)
     l_n_max = max(l_n)
     wemb_n = torch.zeros([bS, l_n_max, hS * num_out_layers_n]).to(device)
+    char_to_index = {char: i for i, char in enumerate(set(''.join(all_encoder_layer)))}
+    
     for b in range(bS):
-
         l_n1 = l_n[b]
         i_nlu1 = i_nlu[b]
         for i_noln in range(num_out_layers_n):
